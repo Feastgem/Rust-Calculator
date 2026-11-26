@@ -10,21 +10,21 @@ enum TOKENS{
 }
 
 fn Convert(Array: Vec<String>) -> Vec<TOKENS>{
-    let mut V : Vec<TOKENS> = Vec::new();
+    let mut ResultArray : Vec<TOKENS> = Vec::new();
     for i in Array{
         println!("{}", i);
         match i.parse::<f64>(){
             Err(e)  => {match i{
-                val if val == '+'.to_string() => V.push(TOKENS::TOKENADD),
-                val if val == '-'.to_string() => V.push(TOKENS::TOKENSUB),
-                val if val == '*'.to_string() => V.push(TOKENS::TOKENMUL),
-                val if val == '/'.to_string() => V.push(TOKENS::TOKENDIV),
+                val if val == '+'.to_string() => ResultArray.push(TOKENS::TOKENADD),
+                val if val == '-'.to_string() => ResultArray.push(TOKENS::TOKENSUB),
+                val if val == '*'.to_string() => ResultArray.push(TOKENS::TOKENMUL),
+                val if val == '/'.to_string() => ResultArray.push(TOKENS::TOKENDIV),
                 _ => {},
             }}, //match statement
-            Ok(num) => {V.push(TOKENS::TOKENFLOAT(num))},//Add enum
+            Ok(num) => {ResultArray.push(TOKENS::TOKENFLOAT(num))},//Add enum
         }
     }
-    return V;
+    return ResultArray;
 }
 
 fn Tokenize(StringInput: String)-> Vec<TOKENS>{
